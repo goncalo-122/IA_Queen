@@ -5,9 +5,6 @@ public class Queen8 {
 
     public Queen8(){
         board = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            board[i] = -1;
-        }
     }
 
     private void position(int row) {
