@@ -1,22 +1,27 @@
 public class Queen8 {
     private static final int SIZE = 8;
     private int[] board;
-
+    private boolean solutionFound = false;
 
     public Queen8(){
         board = new int[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            board[i] = -1;
+        }
     }
 
     private void position(int row) {
+        if (row == SIZE) {
+            printBoard();
+            solutionFound = true;
+            return;
+        }
+
         for (int col = 0; col < SIZE; col++) {
+            if (solutionFound) return;
             board[row] = col;
             if (isSafe(row, col)) {
-                System.out.println("Entrou");
-                if (row == SIZE - 1) {
-                    return;
-                } else {
-                    position(row + 1);
-                }
+                position(row + 1);
             }
         }
         board[row] = -1;
@@ -48,11 +53,5 @@ public class Queen8 {
 
     public void solve() {
         position(0);
-        printBoard();
-//        if (position(0)) {
-//            printBoard();
-//        } else {
-//            System.out.println("No solution found");
-//        }
     }
 }
